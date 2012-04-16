@@ -7,7 +7,7 @@
   <version>0.1</version>
   <name>webmeter</name>
   <properties>
-    <jmeter.location>${project.basedir}/apache-jmeter-2.6/lib/junit</jmeter.location>
+    <jmeter.location>${project.build.directory}/jmeter-libs</jmeter.location>
   </properties>
   <build>
     <plugins>
@@ -25,7 +25,7 @@
         <artifactId>maven-jar-plugin</artifactId>
         <version>2.4</version>
         <configuration>
-          <outputDirectory>${project.basedir}/apache-jmeter-2.6/lib/junit</outputDirectory>
+          <outputDirectory>${jmeter.location}</outputDirectory>
         </configuration>
       </plugin>
       <plugin>
@@ -40,7 +40,7 @@
               <goal>copy-dependencies</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.basedir}/apache-jmeter-2.6/lib/junit</outputDirectory>
+              <outputDirectory>${jmeter.location}</outputDirectory>
             </configuration>
           </execution>
         </executions>
@@ -58,6 +58,11 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <propertiesSystem>
+            <user.classpath>${jmeter.location}</user.classpath>
+          </propertiesSystem>
+        </configuration>
       </plugin>
     </plugins>
   </build>
